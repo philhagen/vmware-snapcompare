@@ -13,6 +13,9 @@ The files in the "bash.original" directory reflect the closest functional
 version of the scripts in the PDF. Future feature additions will be made to 
 files in "bash.new" directory, and possibly others.
 
+These scripts are not only used for VMware image comparisons, but could help
+in analysis of any "changed" system images.
+
 Initial Modifications
 ---------------------
 The originals were modified to function within the SANS SIFT Ubuntu VMware 
@@ -25,7 +28,7 @@ included:
 * Move common function and variable definitions to a separate file, sourced as
 needed
 * Syntax corrections
-* Use mmls(1) from TSK insteaf of fdisk(8)
+* Use mmls(1) from TSK instead of fdisk(8)
 * Paths to binaries to sync with SIFT paths
 * Other minor changes to enable functionality within SIFT environment
 
