@@ -17,6 +17,7 @@ if [ -f $DATAFILE1 ]; then
     file1=`sed -n 1p "$DATAFILE1"`
     file2=`sed -n 2p "$DATAFILE1"`
     skew=`sed -n 3p "$DATAFILE1"`
+    sector=`sed -n 4p "$DATAFILE1"`
     if [ ! -z "$file1" ]&&[ ! -z "$file2" ]; then
         lne=`expr $lne + 2`
         tput cup $lne $cl
@@ -27,6 +28,9 @@ if [ -f $DATAFILE1 ]; then
         lne=`expr $lne + 2`
         tput cup $lne $cl
         echo -n "Time Skew: $skew seconds"
+        lne=`expr $lne + 2`
+        tput cup $lne $cl
+        echo -n "Sector offset: $sector"
     else
         NO_FILE
     fi

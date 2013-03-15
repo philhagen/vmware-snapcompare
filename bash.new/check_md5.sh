@@ -15,6 +15,7 @@ lne=`expr $lne + 2`
 tput cup $lne $cl
 echo -n "Compute MD5 & SHA1 Hashes"
 tput rmso
+
 lne=`expr $lne + 2`
 tput cup $lne $cl
 echo -n "1) Compute Hash for Files Already Selected"

@@ -164,10 +164,6 @@ function SKEW {
             lne=`expr $lne + 2`
             tput cup $lne $cl
             echo -n "Both files seem to be valid, paths recorded."
-            let lne++
-            tput cup $lne $cl
-            echo -n "Please press <ENTER> to continue."
-            read
         else
             let lne++
             tput cup $lne $cl
@@ -190,3 +186,68 @@ function SKEW {
     fi
 }
 SKEW
+
+lne=`expr $lne + 2`
+tput cup $lne $cl
+echo -n "The disk partitions are displayed below"
+let lne++
+tput cup $lne $cl
+echo -n "Input offset for partition to analyze."
+
+/usr/local/bin/mmls "${path1}"
+
+GET_CURSOR
+
+function OFFSET {
+    lne=`expr $lne + 2`
+    tput cup $lne $cl
+    echo -n "Please enter the start fo the partition sector to analyze:"
+    read sector
+    if [ -z $sector ]; then
+        let lne++
+        tput cup $lne $cl
+        echo -n "Input cannot be left blank."
+        let lne++
+        tput cup $lne $cl
+        echo -n "Do you wish to continue (y/n): "
+        let lne++
+        tput cup $lne $cl
+        echo -n "Enter N/n to exit."
+        line=`expr $lne - 1`
+        tput cup $line 36
+        read ans
+        if [ $ans == n -o $ans == N ]; &> /dev/null ; then
+            exit
+        else
+            OFFSET
+        fi
+    else
+        if [[ "$sector" =~ ^[0-9]+$ ]]; then
+            echo $sector >> $DATAFILE1
+            lne=`expr $lne + 2`
+            tput cup $lne $cl
+            echo -n "Sector seems valid and was recorded."
+            let lne++
+            tput cup $lne $cl
+        else
+            let lne++
+            tput cup $lne $cl
+            echo -n "Input is not a number."
+            let lne++
+            tput cup $lne $cl
+            echo -n "Do you wish to continue (y/n): "
+            let lne++
+            tput cup $lne $cl
+            echo -n "Enter N/n to exit."
+            line=`expr $lne - 1`
+            tput cup $lne 36
+            read ans
+            if [ $ans == n -o $ans == N ] &> /dev/null ; then
+                exit
+            else
+                OFFSET
+            fi
+        fi
+    fi
+}
+OFFSET
