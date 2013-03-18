@@ -43,9 +43,11 @@ if [ ! -e ${OUTPUTDIR} ]; then
 fi
 TEMP_CLEAN=/tmp/clean
 TEMP_CHANGED=/tmp/changed
-DATAFILE1=${MENUPATH}/raw_files_path
-DATAFILE_CLEAN=${MENUPATH}/files_list_clean
-DATAFILE_CHANGED=${MENUPATH}/files_list_changed
+DATAFILE1=${OUTPUTDIR}/raw_files_path
+BODYFILE_CLEAN=${OUTPUTDIR}/bodyfile_clean
+BODYFILE_CHANGED=${OUTPUTDIR}/bodyfile_changed
+DATAFILE_CLEAN=${OUTPUTDIR}/files_list_clean
+DATAFILE_CHANGED=${OUTPUTDIR}/files_list_changed
 OUTPUT_ADDED=${OUTPUTDIR}/files_added.list
 OUTPUT_DELETED=${OUTPUTDIR}/files_deleted.list
 OUTPUT_EDITED=${OUTPUTDIR}/files_edited.list

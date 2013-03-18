@@ -28,25 +28,8 @@ function SECT {
     file2=`sed -n 2p $DATAFILE1`
     skew=`sed -n 3p $DATAFILE1`
     sector=`sed -n 4p $DATAFILE1`
-    /usr/local/bin/fls -m / -r -f ntfs -i raw -s $skew -o $sector "$file1" | cut -f 2 -d'|' > $DATAFILE_CLEAN &
-    pid=`pgrep fls | head -1`
-    let lne++
-    tput cup $lne $cl
-    echo -n "Content of clean snapshot are being recorded, please wait:"
-    let lne++
-    scrtime=1
-    PROG_BAR
-    /usr/local/bin/fls -m / -r -f ntfs -i raw -s $skew -o $sector "$file2" | cut -f 2 -d'|' > $DATAFILE_CHANGED &
-    pid=`pgrep fls | head -1`
-    lne=`expr $lne + 2`
-    tput cup $lne $cl
-    echo -n "Content of suspect snapshot are being recorded, please wait:"
-    let lne++
-    scrtime=1
-    PROG_BAR
-    lne=`expr $lne + 2`
-    tput cup $lne $cl
-    echo -n "Contents of snapshots gathered."
+    cat $BODYFILE_CLEAN | cut -f 2 -d'|' > $DATAFILE_CLEAN
+    cat $BODYFILE_CHANGED | cut -f 2 -d'|' > $DATAFILE_CHANGED
     lne=`expr $lne + 2`
     tput cup $lne $cl
     tput clear
