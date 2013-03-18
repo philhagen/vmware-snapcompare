@@ -201,7 +201,7 @@ GET_CURSOR
 function OFFSET {
     lne=`expr $lne + 2`
     tput cup $lne $cl
-    echo -n "Please enter the start fo the partition sector to analyze:"
+    echo -n "Please enter the start of the partition sector to analyze:"
     read sector
     if [ -z $sector ]; then
         let lne++
