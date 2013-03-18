@@ -1,6 +1,10 @@
 #!/bin/bash
 
 . $( dirname $0 )/snapcompare_common.sh
+
+DATAFILE_CLEAN=${DATAFILE_CLEAN}_CHANGE
+DATAFILE_CHANGED=${DATAFILE_CHANGED}_CHANGE
+
 if [ -e ${OUTPUT_CHANGED} ]; then
     echo "ERROR: ${OUTPUT_CHANGED} already exists - returning to menu to prevent accidental overwrite!"
     read
