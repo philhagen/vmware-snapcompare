@@ -73,5 +73,10 @@ function SECT {
     echo -n "populated and stored at: $OUTPUT_DELETED"
     let lne++
     tput cup $lne $cl
+
+    rm -f $TEMP_CLEAN
+    rm -f $TEMP_CHANGED
+    rm -f $DATAFILE_CLEAN
+    rm -f $DATAFILE_CHANGED
 }
 SECT
