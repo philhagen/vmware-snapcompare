@@ -53,18 +53,9 @@ function SECT {
     echo "" >> $OUTPUT_SETID
     lne=`expr $lne + 2`
     tput cup $lne $cl
-    /usr/bin/sort $DATAFILE_CLEAN > $TEMP_CLEAN &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
-    /usr/bin/sort $DATAFILE_CHANGED > $TEMP_CHANGED &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
-    /usr/bin/diff $TEMP_CLEAN $TEMP_CHANGED | grep \> | sed s/\>\ // >> $OUTPUT_SETID &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
+    /usr/bin/sort $DATAFILE_CLEAN > $TEMP_CLEAN
+    /usr/bin/sort $DATAFILE_CHANGED > $TEMP_CHANGED
+    /usr/bin/diff $TEMP_CLEAN $TEMP_CHANGED | grep \> | sed s/\>\ // >> $OUTPUT_SETID
     lne=`expr $lne + 2`
     tput cup $lne $cl
     echo -n "A list of files with SETUID/SETGID changes are"

@@ -12,22 +12,6 @@ function CTRAP {
         ' 2
     }
 
-function PROG_BAR {
-    while [ `ps ax | grep $pid | grep -v grep | awk '{ print $1 }'` ]
-    do
-        tput cup $lne 5
-        echo -n "|"
-        tput cup $lne 57
-        echo -n "|"
-        tput cup $lne 6
-        for (( i = 1 ; i < 51 ; i++ ))
-        do
-            echo -n " "
-            sleep $scrtime
-        done
-    done
-    }
-
 function GET_CURSOR {
     stty -echo
     echo -n $'\e[6n'

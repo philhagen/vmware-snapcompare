@@ -53,18 +53,9 @@ function SECT {
     echo "" >> $OUTPUT_DELETED
     lne=`expr $lne + 2`
     tput cup $lne $cl
-    /usr/bin/sort $DATAFILE_CLEAN > $TEMP_CLEAN &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
-    /usr/bin/sort $DATAFILE_CHANGED > $TEMP_CHANGED &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
-    /usr/bin/diff $TEMP_CLEAN $TEMP_CHANGED | grep \< | sed s/\<\ // >> $OUTPUT_DELETED &
-    pid=`echo $!`
-    scrtime=1
-    PROG_BAR
+    /usr/bin/sort $DATAFILE_CLEAN > $TEMP_CLEAN
+    /usr/bin/sort $DATAFILE_CHANGED > $TEMP_CHANGED
+    /usr/bin/diff $TEMP_CLEAN $TEMP_CHANGED | grep \< | sed s/\<\ // >> $OUTPUT_DELETED
     lne=`expr $lne + 2`
     tput cup $lne $cl
     echo -n "A list of files deleted from the VM has be"

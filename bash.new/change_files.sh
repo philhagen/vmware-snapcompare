@@ -54,7 +54,6 @@ function SECT {
     echo -n "a several hours, please leave the program running."
     let lne++
     tput cup $lne $cl
-    echo -n "No progress bar will be displayed."
     echo "" > $OUTPUT_CHANGED
     echo "" >> $OUTPUT_CHANGED
     echo " Following are the files that have been changed:" >> $OUTPUT_CHANGED
