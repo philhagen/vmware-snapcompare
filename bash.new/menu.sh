@@ -41,10 +41,16 @@ tput cup $lne $cl
 echo -n "9) Compute MD5 & SHA1 Hashes"
 lne=`expr $lne + 2`
 tput cup $lne $cl
-echo -n "A) Run all of: Deleted, Added, Edited, Changed"
+echo -n "A) Select snapshots, then run all of: Deleted, Added, Edited, Changed"
 let lne++
 tput cup $lne $cl
-echo -n "B) Run all of: Deleted, Added, Edited, Changed, SETUID/SETGID"
+echo -n "B) Select snapshots, then run all of: Deleted, Added, Edited, Changed, SETUID/SETGID"
+let lne++
+tput cup $lne $cl
+echo -n "M) Run all of: Deleted, Added, Edited, Changed"
+let lne++
+tput cup $lne $cl
+echo -n "N) Run all of: Deleted, Added, Edited, Changed, SETUID/SETGID"
 lne=`expr $lne + 2`
 tput cup $lne $cl
 echo -n "0) EXIT"
@@ -71,9 +77,15 @@ case $choice in
     ;;
     9) $MENUPATH/check_md5.sh
     ;;
-    A) $MENUPATH/runall_nosuid.sh
+    A) $MENUPATH/select_files.sh
+       $MENUPATH/runall_nosuid.sh
     ;;
-    B) $MENUPATH/runall_suid.sh
+    B) $MENUPATH/select_files.sh
+       $MENUPATH/runall_nosuid.sh
+    ;;
+    M) $MENUPATH/runall_nosuid.sh
+    ;;
+    N) $MENUPATH/runall_suid.sh
     ;;
     0) echo ; echo ; exit
     ;;
