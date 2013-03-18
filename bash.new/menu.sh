@@ -32,13 +32,19 @@ tput cup $lne $cl
 echo -n "6) View Files Changed [Change Time]"
 let lne++
 tput cup $lne $cl
-echo -n "7) View SETUID/SETGUID Changes"
+echo -n "7) View SETUID/SETGID Changes"
 let lne++
 tput cup $lne $cl
 echo -n "8) View Analysis Result Files"
 let lne++
 tput cup $lne $cl
 echo -n "9) Compute MD5 & SHA1 Hashes"
+lne=`expr $lne + 2`
+tput cup $lne $cl
+echo -n "A) Run all of: Deleted, Added, Edited, Changed"
+let lne++
+tput cup $lne $cl
+echo -n "B) Run all of: Deleted, Added, Edited, Changed, SETUID/SETGID"
 lne=`expr $lne + 2`
 tput cup $lne $cl
 echo -n "0) EXIT"
@@ -64,6 +70,10 @@ case $choice in
     8) $MENUPATH/result_files.sh
     ;;
     9) $MENUPATH/check_md5.sh
+    ;;
+    A) $MENUPATH/runall_nosuid.sh
+    ;;
+    B) $MENUPATH/runall_suid.sh
     ;;
     0) echo ; echo ; exit
     ;;
