@@ -257,13 +257,11 @@ file2=`sed -n 2p $DATAFILE1`
 skew=`sed -n 3p $DATAFILE1`
 sector=`sed -n 4p $DATAFILE1`
 
+echo -n "Content of clean snapshot are being recorded, please wait:"
 /usr/local/bin/fls -m / -r -f ntfs -i raw -s $skew -o $sector "$file1" > $BODYFILE_CLEAN
-pid=`pgrep fls | head -1`
 let lne++
 tput cup $lne $cl
-echo -n "Content of clean snapshot are being recorded, please wait:"
+echo -n "Content of suspect snapshot are being recorded, please wait:"
 /usr/local/bin/fls -m / -r -f ntfs -i raw -s $skew -o $sector "$file2" > $BODYFILE_CHANGED
-pid=`pgrep fls | head -1`
 lne=`expr $lne + 2`
 tput cup $lne $cl
-echo -n "Content of suspect snapshot are being recorded, please wait:"
